@@ -1,0 +1,27 @@
+{
+  "name": "test-qibus",
+  "version": "1.0.0",
+  "description": "qibus test app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "server": "nodemon index"
+  },
+  "keywords": [
+    "qibus",
+    "test"
+  ],
+  "author": "Nikita Tuytuynov",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.3",
+    "mongosh": "^1.6.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
