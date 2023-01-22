@@ -5,7 +5,7 @@ export interface User {
     email?: string | null
     hobbies?: string | null
     country?: string | null
-    _id?: string | null
+    _id?: string
 }
 
 export interface Message{

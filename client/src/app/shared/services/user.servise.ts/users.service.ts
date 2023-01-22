@@ -16,7 +16,7 @@ export class UsersService {
     }
 
     delete(id: string): Observable<Message>{
-        return this.http.delete<Message>('api')
+        return this.http.delete<Message>(`api/${id}`)
     }
 
     create(form: User): Observable<any>{

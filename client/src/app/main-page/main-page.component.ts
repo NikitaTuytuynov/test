@@ -41,8 +41,14 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.modal = MaterialService.initModal(this.modalRef)
   }
 
-  onDeleteUser(position: User) {
-
+  onDeleteUser(position?: string) {
+    if(!position) return
+    this.usersService.delete(position).subscribe(
+      () => {
+        MaterialService.toast('Sucsess')
+        this.users$ = this.usersService.fetch()
+      }
+    )
   }
 
   onAddPosition() {
@@ -50,10 +56,10 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   onCancel() {
     if (this.modal && this.modal.close) this.modal.close()
+    this.form.reset()
   }
 
   onSubmit() {
-    console.log(this.form.value)
     this.form.disable()
     const newUser: User = {
       profileImage: this.form.get('profileImage')?.value,
@@ -63,13 +69,15 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
       hobbies: this.form.get('hobbies')?.value,
       country: this.form.get('country')?.value,
     }
-    debugger
     let obs$
     obs$ = this.usersService.create(newUser)
     obs$.subscribe(
       user => {
-        MaterialService.toast('Sucsess')
+        MaterialService.toast('Success')
+        this.onCancel()
+        this.form.reset()
         this.form.enable()
+        this.users$ = this.usersService.fetch()
       }
     )
   }

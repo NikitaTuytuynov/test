@@ -44,7 +44,6 @@ module.exports.create = async function(req, res) {
     try {
         await user2.save()
         res.status(201).json(user2)
-        res.send(`User with the name ${user2.firstName} addad`)
 
     } catch (e) {
         errorHendler(res, e)
