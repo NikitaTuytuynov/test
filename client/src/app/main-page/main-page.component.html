@@ -1,14 +1,92 @@
-<form class="row">
-    <div class="col s12">
-        <div class="collection">
-            <a href="#!" class="collection-item" style="font-weight:bold">user 1<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-            <a href="#!" class="collection-item" style="font-weight:bold">user 1<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-            <a href="#!" class="collection-item" style="font-weight:bold">user 1<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-            <a href="#!" class="collection-item" style="font-weight:bold">user 1<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-            <a href="#!" class="collection-item" style="font-weight:bold">user 1<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-            <a href="#!" class="collection-item active" style="font-weight:bold">user 2<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-            <a href="#!" class="collection-item" style="font-weight:bold">user 1<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-            <a href="#!" class="collection-item" style="font-weight:bold">user 1<button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%;">delete</button></a>
-        </div>
+<main class="content">
+    <div class="page-title">
+        <h4>Users:</h4>
+        <button class="waves-effect waves-light btn grey darken-2"
+        (click)="onAddPosition()">
+            Add user
+        </button>
     </div>
-</form>
+    <form class="row" *ngIf="users$ | async as users">
+        <div class="col s12">
+            <div class="collection" *ngIf="users.length !== 0; else empty">
+                <a *ngFor="let user of users" href="#!" class="collection-item" style="font-weight: bold;
+        vertical-align:bottom;
+        ;">
+                    <div style="display: inline-block;
+          width: 25%;
+          text-align: center;">{{user.firstName}}</div>
+                    <div style="display: inline-block;
+          width: 25%;
+          text-align: center;">{{user.lastName}}</div>
+                    <div style="display: inline-block;
+          width: 25%;
+          text-align: center;">{{user.email}}</div>
+                    <button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%"
+                    (click)="onDeleteUser(user)"
+                    >
+                        delete
+                    </button>
+                </a>
+            </div>
+            <ng-template #empty>
+                <div class="center">
+                    Users list is empty
+                </div>
+            </ng-template>
+        </div>
+    </form>
+</main>
+
+
+
+
+    <div class="modal" #modal>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="modal-content">           
+            <h4 class="mb1">Add user</h4>
+            <div class="input-field">
+                <input
+                formContolName="profileImage"
+                id="pos-url" type="text" required>
+                <label for="pos-url">Picture URL:</label>
+            </div>
+            <div class="input-field">
+                <input
+                formContolName="firstName"
+                id="pos-name" type="text" required>
+                <label for="pos-name">First Name:</label>
+            </div>
+            <div class="input-field">
+                <input
+                formContolName="lastName"
+                id="pos-lastName" type="text" required>
+                <label for="pos-lastName">Last Name:</label>
+            </div>
+            <div class="input-field">
+                <input
+                formContolName="email"
+                id="pos-email" type="text" required>
+                <label for="pos-email">Email:</label>
+            </div>
+            <div class="input-field">
+                <input
+                formContolName="hobbies"
+                id="pos-hobbie" type="text" required>
+                <label for="pos-hobbie">Hobbies:</label>
+            </div>
+            <div class="input-field">
+                <input
+                formContolName="country"
+                id="pos-country" type="text" required>
+                <label for="pos-country">Country</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-black btn-flat"
+            (click)="onCancel()">Cancel</a>
+            <button class="modal-action btn waves-effect" type="submit"
+            [disabled]="form.invalid || form.disabled"
+            >Save</button>
+        </div>
+    </form>
+    </div>

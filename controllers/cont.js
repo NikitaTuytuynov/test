@@ -23,7 +23,7 @@ module.exports.getById = async function(req, res) {
 
 module.exports.remove = async function(req, res) {
     try {
-        await users2.remove({_id: req.params.id})
+        await users1.remove({_id: req.params.id})
         res.status(200).json({
             message: 'User deleted.'
         })
@@ -33,7 +33,6 @@ module.exports.remove = async function(req, res) {
 }
 
 module.exports.create = async function(req, res) {
-    console.log(req.body);
     const user2 = new users1({
         profileImage: req.body.profileImage,
         firstName: req.body.firstName,
@@ -45,6 +44,7 @@ module.exports.create = async function(req, res) {
     try {
         await user2.save()
         res.status(201).json(user2)
+        res.send(`User with the name ${user2.firstName} addad`)
 
     } catch (e) {
         errorHendler(res, e)
