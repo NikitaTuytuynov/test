@@ -9,24 +9,30 @@
         <div class="col s12">
             <div class="collection" *ngIf="users.length !== 0; else empty">
                 <a *ngFor="let user of users"
-                [routerLink]="['/',user._id]"
                 class="collection-item" style="font-weight: bold;
-        vertical-align:bottom;
+        padding: 4px 20px;
         ;">
                     <div style="display: inline-block;
-          width: 25%;
-          text-align: center;">{{user.firstName}}</div>
+          width: 30%;
+          text-align: center;"
+          [routerLink]="['/',user._id]">{{user.firstName}}</div>
                     <div style="display: inline-block;
-          width: 25%;
-          text-align: center;">{{user.lastName}}</div>
+          width: 30%;
+          text-align: center;"
+          [routerLink]="['/',user._id]">{{user.lastName}}</div>
                     <div style="display: inline-block;
-          width: 25%;
-          text-align: center;">{{user.email}}</div>
-                    <button class="waves-effect waves-light btn red darken-1" style="margin-left: 90%"
+          width: 33%;
+          text-align: center;"
+          [routerLink]="['/',user._id]">{{user.email}}</div>
+          <span>
+                    <button class="waves-effect waves-light btn red darken-1" 
+                    
                         (click)="onDeleteUser(user._id)">
                         delete
                     </button>
+                </span>
                 </a>
+                
             </div>
             <ng-template #empty>
                 <div class="center">

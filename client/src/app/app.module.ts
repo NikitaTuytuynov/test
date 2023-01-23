@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { RouterModule } from '@angular/router';
+import { UserFormComponent } from './main-page/user-form/user-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    MainPageComponent
+    MainPageComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,

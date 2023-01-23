@@ -20,15 +20,11 @@ export class UsersService {
     }
 
     create(form: User): Observable<any>{
-        // const fd = json()
-        // fd.append('profileImage' , profileImage)
-        // fd.append('firstName', firstName)
-        // fd.append('lastName', lastName)
-        // fd.append('email', email)
-        // fd.append('hobbies', hobbies)
-        // fd.append('country', country)
         return this.http.post('http://localhost:5000/api/', form)
     }
 
+    getById(id: string): Observable<User>{
+        return this.http.get<User>(`/${id}`)
+    }
 
 }
